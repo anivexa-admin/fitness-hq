@@ -281,7 +281,9 @@ body{background:#0b1423;color:#f3f6ff;font-family:Inter,system-ui,-apple-system,
   #nav{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;min-height:0!important}
   #nav button[data-view="settings"]{position:static!important;margin-top:auto!important;flex:0 0 auto!important}
   /* Keep Settings at the bottom of the left navigation list */
-  #nav button[data-view="settings"]{position:sticky!important;bottom:0!important;z-index:3!important;margin-top:auto!important;background:#172740!important;border-top:1px solid #30445f!important}
+  /* Settings is a separate final sidebar control, below the weekly summary */
+  .sidebar-settings{display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;min-height:38px!important;margin:7px 0 0!important;padding:7px 8px!important;border:1px solid #30445f!important;border-radius:9px!important;background:#172740!important;color:#e4ecfa!important;text-align:left!important;font-size:10px!important}
+  .sidebar-settings.active{background:linear-gradient(135deg,#5830d1,#813fe7)!important;color:#fff!important;border-color:#8c68ef!important}
 }
 
 </style>
@@ -289,11 +291,12 @@ body{background:#0b1423;color:#f3f6ff;font-family:Inter,system-ui,-apple-system,
 <body>
 <div class="app">
 <aside class="sidebar">
- <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v29.6 PRO</div></div>
+ <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v29.7 PRO</div></div>
  <nav class="nav" id="nav">
- <button class="active" data-view="home"><span>⌂</span> Dashboard</button><button data-view="profile">Profile</button><button data-view="routine">Daily routine</button><button data-view="diet">🍴 Diet Plan</button><button data-view="nutrition">▥ Nutrition</button><button data-view="nutrition">☑ Meal Tracker</button><button data-view="recipes">♨ Recipes</button><button data-view="grocery">🛒 Grocery Manager</button><button data-view="workout">⚒ Workout</button><button data-view="progress">▰ Progress</button><button data-view="wellness">Water & Sleep</button><button data-view="reports">▤ Reports</button><button data-view="coach">🧭 Fitness Coach</button><button data-view="settings">⚙ Settings</button>
+ <button class="active" data-view="home"><span>⌂</span> Dashboard</button><button data-view="profile">Profile</button><button data-view="routine">Daily routine</button><button data-view="diet">🍴 Diet Plan</button><button data-view="nutrition">▥ Nutrition</button><button data-view="nutrition">☑ Meal Tracker</button><button data-view="recipes">♨ Recipes</button><button data-view="grocery">🛒 Grocery Manager</button><button data-view="workout">⚒ Workout</button><button data-view="progress">▰ Progress</button><button data-view="wellness">Water & Sleep</button><button data-view="reports">▤ Reports</button><button data-view="coach">🧭 Fitness Coach</button>
 </nav>
  <div class="side-week"><b>▦ This Week</b><h3 id="sideWeekDay">Day 1 of 7</h3><div class="side-progress"><i id="sideWeekProgress"></i></div><p>🌿 Veg Days: <span id="sideVegDays">0/4</span></p></div>
+ <button class="sidebar-settings" data-view="settings">⚙ Settings</button>
 </aside>
 <main class="main-content">
 
@@ -542,8 +545,8 @@ function profileSubmit(form){let p=Object.fromEntries(new FormData(form));['age'
 document.addEventListener('DOMContentLoaded',()=>{
  const d=new Date();const dateEl=document.getElementById('topDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
  const headings={home:'Dashboard',profile:'Profile',routine:'Daily routine',diet:'Diet Plan',nutrition:'Nutrition',recipes:'Recipes',grocery:'Grocery Manager',workout:'Workout',progress:'Progress',wellness:'Water & Sleep',reports:'Reports',settings:'Settings',coach:'Fitness Coach'};
- document.querySelectorAll('#nav button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
- document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`#nav button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
+ document.querySelectorAll('.sidebar button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
+ document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`.sidebar button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
 });
 
 document.addEventListener("DOMContentLoaded",initGlobalSearch);
@@ -564,7 +567,7 @@ function renderCoach(){
 }
 document.addEventListener('DOMContentLoaded',()=>{document.getElementById('refreshCoach')?.addEventListener('click',()=>{renderCoach();toast('Coach suggestions refreshed')});renderCoach()});
 
-function showView(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+v));document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===v));window.scrollTo({top:0,behavior:'smooth'});if(v==='nutrition')renderNutrition();if(v==='routine'){renderRoutine();renderHabits();}if(v==='diet')renderDiet();if(v==='recipes')renderRecipes();if(v==='grocery')renderGrocery();if(v==='workout')renderWorkout();if(v==='progress')renderProgress();if(v==='reports')renderReport();if(v==='coach')renderCoach()}
+function showView(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+v));document.querySelectorAll('.sidebar button[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));window.scrollTo({top:0,behavior:'smooth'});if(v==='nutrition')renderNutrition();if(v==='routine'){renderRoutine();renderHabits();}if(v==='diet')renderDiet();if(v==='recipes')renderRecipes();if(v==='grocery')renderGrocery();if(v==='workout')renderWorkout();if(v==='progress')renderProgress();if(v==='reports')renderReport();if(v==='coach')renderCoach()}
 
 function renderWellness(){
  const day=today(), logs=db.water[day]||[], total=logs.reduce((s,x)=>s+Number(x.ml||0),0);
@@ -675,6 +678,7 @@ function renderDashboard(){
 
 function renderHome(){renderDashboard();}
 document.getElementById('nav').addEventListener('click',e=>{let v=e.target.dataset.view;if(v)showView(v)});
+document.querySelector('.sidebar-settings').addEventListener('click',()=>showView('settings'));
 document.addEventListener('click',e=>{let v=e.target.closest('[data-go]')?.dataset.go;if(v)showView(v)});
 document.getElementById('profileForm').addEventListener('submit',e=>{e.preventDefault();profileSubmit(e.target)});
 function renderProfileForm(){let p=db.profile;p.targetWeight=recommendedTarget(p);let f=document.getElementById('editProfileForm');let fields=[['name','Full name','text',p.name],['age','Age','number',p.age],['height','Height cm','number',p.height],['weight','Current weight kg','number',p.weight],['budget','Daily food budget ₹','number',p.budget]];f.innerHTML=fields.map(([n,l,t,v])=>`<div><label>${l}</label><input name="${n}" type="${t}" value="${esc(v)}" ${n==='age'?'min="16" max="100"':n==='height'?'min="120" max="220" step=".1"':n==='weight'?'min="30" max="200" step=".1"':''}></div>`).join('')+`<div><label>Sex</label><select name="sex"><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></div><div><label>Goal</label><select name="goal">${[['muscle','Muscle gain'],['fat','Fat loss'],['maintain','Maintain'],['fitness','General fitness']].map(x=>`<option value="${x[0]}" ${p.goal===x[0]?'selected':''}>${x[1]}</option>`)}</select></div><div><label>Recommended target weight (kg)</label><input name="targetWeight" type="number" value="${p.targetWeight}" readonly><small class="muted">Automatically calculated; cannot be manually overridden.</small></div><div><label>Activity</label><select name="activity">${[['1.2','Sedentary'],['1.375','Light'],['1.55','Moderate'],['1.725','High']].map(x=>`<option value="${x[0]}" ${p.activity==x[0]?'selected':''}>${x[1]}</option>`)}</select></div><div><label>Workout location</label><select name="place">${['home','gym','both','none'].map(x=>`<option ${p.place===x?'selected':''}>${x}</option>`)}</select></div><div><label>Days/week</label><select name="days">${[2,3,4,5,6].map(x=>`<option ${p.days==x?'selected':''}>${x}</option>`)}</select></div><div><label>Diet</label><select name="diet">${['nonveg','veg','eggetarian','vegan'].map(x=>`<option ${p.diet===x?'selected':''}>${x}</option>`)}</select></div><div><label>Experience</label><select name="experience">${['beginner','intermediate','advanced'].map(x=>`<option ${p.experience===x?'selected':''}>${x}</option>`)}</select></div><div class="field full"><label>Allergies / restrictions</label><input name="allergies" value="${esc(p.allergies)}"></div>`;f.elements.sex.value=p.sex;f.elements.diet.value=p.diet;f.elements.experience.value=p.experience;document.getElementById('profileTargets').textContent=`Suggested target: ${p.targetWeight} kg · Estimated targets: ${targets(p).kcal} kcal/day · ${targets(p).protein} g protein/day. Adult BMI reference is a screening guide, not a medical ideal. Under 18, target defaults to current weight; consult a qualified professional.`;const form=document.getElementById('profileForm');if(form.elements.targetWeight)form.elements.targetWeight.value=recommendedTarget(Object.fromEntries(new FormData(form)));}
@@ -684,8 +688,8 @@ document.getElementById('saveProfile').onclick=()=>{let p=Object.fromEntries(new
 document.addEventListener('DOMContentLoaded',()=>{
  const d=new Date();const dateEl=document.getElementById('topDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
  const headings={home:'Dashboard',profile:'Profile',routine:'Daily routine',diet:'Diet Plan',nutrition:'Nutrition',recipes:'Recipes',grocery:'Grocery Manager',workout:'Workout',progress:'Progress',wellness:'Water & Sleep',reports:'Reports',settings:'Settings',coach:'Fitness Coach'};
- document.querySelectorAll('#nav button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
- document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`#nav button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
+ document.querySelectorAll('.sidebar button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
+ document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`.sidebar button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
 });
 
 boot();toast('Profile updated')};
@@ -1055,8 +1059,8 @@ document.getElementById('addProgress').onclick=()=>{let w=Number(prompt('Current
 document.addEventListener('DOMContentLoaded',()=>{
  const d=new Date();const dateEl=document.getElementById('topDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
  const headings={home:'Dashboard',profile:'Profile',routine:'Daily routine',diet:'Diet Plan',nutrition:'Nutrition',recipes:'Recipes',grocery:'Grocery Manager',workout:'Workout',progress:'Progress',wellness:'Water & Sleep',reports:'Reports',settings:'Settings',coach:'Fitness Coach'};
- document.querySelectorAll('#nav button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
- document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`#nav button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
+ document.querySelectorAll('.sidebar button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
+ document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`.sidebar button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
 });
 
 boot();showView('progress');toast('Progress saved')};
@@ -1070,8 +1074,8 @@ document.getElementById('importData').onchange=e=>{let f=e.target.files[0];if(!f
 document.addEventListener('DOMContentLoaded',()=>{
  const d=new Date();const dateEl=document.getElementById('topDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
  const headings={home:'Dashboard',profile:'Profile',routine:'Daily routine',diet:'Diet Plan',nutrition:'Nutrition',recipes:'Recipes',grocery:'Grocery Manager',workout:'Workout',progress:'Progress',wellness:'Water & Sleep',reports:'Reports',settings:'Settings',coach:'Fitness Coach'};
- document.querySelectorAll('#nav button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
- document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`#nav button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
+ document.querySelectorAll('.sidebar button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
+ document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`.sidebar button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
 });
 
 boot();toast('Backup restored')}catch(err){alert('Invalid FITNESS HQ backup file')} };r.readAsText(f)};
@@ -1079,8 +1083,8 @@ document.getElementById('deleteAll').onclick=()=>{if(confirm('Permanently delete
 document.addEventListener('DOMContentLoaded',()=>{
  const d=new Date();const dateEl=document.getElementById('topDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
  const headings={home:'Dashboard',profile:'Profile',routine:'Daily routine',diet:'Diet Plan',nutrition:'Nutrition',recipes:'Recipes',grocery:'Grocery Manager',workout:'Workout',progress:'Progress',wellness:'Water & Sleep',reports:'Reports',settings:'Settings',coach:'Fitness Coach'};
- document.querySelectorAll('#nav button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
- document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`#nav button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
+ document.querySelectorAll('.sidebar button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
+ document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`.sidebar button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
 });
 
 boot();toast('All app data deleted')}};
@@ -1092,8 +1096,8 @@ document.getElementById('installApp').onclick=async()=>{if(!installPrompt){docum
 document.addEventListener('DOMContentLoaded',()=>{
  const d=new Date();const dateEl=document.getElementById('topDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
  const headings={home:'Dashboard',profile:'Profile',routine:'Daily routine',diet:'Diet Plan',nutrition:'Nutrition',recipes:'Recipes',grocery:'Grocery Manager',workout:'Workout',progress:'Progress',wellness:'Water & Sleep',reports:'Reports',settings:'Settings',coach:'Fitness Coach'};
- document.querySelectorAll('#nav button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
- document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`#nav button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
+ document.querySelectorAll('.sidebar button[data-view]').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById('pageHeading');if(el)el.textContent=headings[btn.dataset.view]||'Dashboard'}));
+ document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.querySelector(`.sidebar button[data-view="${btn.dataset.go}"]`);if(target)target.click()}));
 });
 
 boot();
