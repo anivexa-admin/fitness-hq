@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "FITNESS HQ",
+  "short_name": "FITNESS HQ",
+  "description": "Personal fitness planner, nutrition tracker and workout log.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07110f",
+  "theme_color": "#0b1715",
+  "icons": [
+    {"src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}
