@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1423">
+<meta name="theme-color" content="#0b1715">
 <meta name="description" content="Offline-first personal fitness planner">
 <link rel="manifest" href="manifest.webmanifest">
 <title>FITNESS HQ</title>
@@ -245,12 +245,34 @@ body{background:#0b1423;color:#f3f6ff;font-family:Inter,system-ui,-apple-system,
   .nav button{width:62px!important;min-width:62px!important}
 }
 
+
+/* v29.3 — fixed full-height left navigation + independently scrolling centre */
+@media(max-width:700px){
+  html,body{height:100%;min-height:100%;overflow:hidden!important;overscroll-behavior:none!important}
+  body{padding:0!important;margin:0!important}
+  .app{height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;box-sizing:border-box!important;overflow:hidden!important;padding:0 7px 0 126px!important;margin:0!important;width:100%!important;max-width:100%!important}
+  .sidebar{position:fixed!important;left:0!important;top:0!important;bottom:0!important;right:auto!important;width:119px!important;height:100dvh!important;max-height:100dvh!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;overflow:hidden!important;padding:8px 6px!important;margin:0!important;border-right:1px solid #30445f!important;border-top:0!important;border-radius:0!important;z-index:100!important;background:linear-gradient(180deg,#101b2e,#0d1728)!important}
+  .side-brand{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;flex:0 0 auto!important;padding:4px 0 9px!important;margin:0 0 6px!important;border-bottom:1px solid #30445f!important}
+  .side-logo{font-size:23px!important;line-height:1.1!important}
+  .side-name{font-size:12px!important;letter-spacing:.04em!important;white-space:nowrap!important}
+  .side-pro{font-size:8px!important;padding:3px 7px!important;margin:2px 0 0!important}
+  .nav{display:flex!important;flex:1 1 auto!important;min-height:0!important;flex-direction:column!important;align-items:stretch!important;gap:3px!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior:contain!important;scrollbar-width:thin!important;white-space:normal!important;padding:2px 0!important;margin:0!important;background:transparent!important;border:0!important;position:static!important}
+  .nav button{display:flex!important;flex:0 0 auto!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:5px!important;width:100%!important;min-width:0!important;min-height:34px!important;height:auto!important;padding:6px 5px!important;border:1px solid transparent!important;border-radius:8px!important;background:transparent!important;color:#bdcbe0!important;font-size:9px!important;line-height:1.15!important;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere!important}
+  .nav button span{font-size:13px!important;line-height:1!important;flex:0 0 14px!important;text-align:center!important}
+  .nav button.active{background:linear-gradient(135deg,#5830d1,#813fe7)!important;color:#fff!important;border-color:#8c68ef!important;box-shadow:0 3px 10px #6338d044!important}
+  .side-week{display:block!important;flex:0 0 auto!important;margin:6px 0 0!important;padding:7px 6px!important;border-radius:9px!important;font-size:9px!important}
+  .side-week h3{font-size:10px!important;margin:4px 0!important}
+  .side-week p{font-size:8px!important;margin:4px 0 0!important}
+  .side-progress{height:5px!important}
+  .main-content{height:100dvh!important;max-height:100dvh!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch!important;padding:0 0 24px!important;margin:0!important;max-width:none!important}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
- <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v29.2 PRO</div></div>
+ <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v29.3 PRO</div></div>
  <nav class="nav" id="nav">
  <button class="active" data-view="home"><span>⌂</span> Dashboard</button><button data-view="profile">Profile</button><button data-view="routine">Daily routine</button><button data-view="diet">🍴 Diet Plan</button><button data-view="nutrition">▥ Nutrition</button><button data-view="nutrition">☑ Meal Tracker</button><button data-view="recipes">♨ Recipes</button><button data-view="grocery">🛒 Grocery Manager</button><button data-view="workout">⚒ Workout</button><button data-view="progress">▰ Progress</button><button data-view="wellness">Water & Sleep</button><button data-view="reports">▤ Reports</button><button data-view="coach">🧭 Fitness Coach</button><button data-view="settings">⚙ Settings</button>
 </nav>
