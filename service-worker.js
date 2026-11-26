@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fitness-hq-v29-7-sidebar-settings-fix';
+const CACHE_NAME = 'fitness-hq-v29-8-sidebar-reference';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', event => {
