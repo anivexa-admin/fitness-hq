@@ -285,7 +285,7 @@ body{background:#0b1423;color:#f3f6ff;font-family:Inter,system-ui,-apple-system,
 }
 
 
-/* v29.8 FINAL SIDEBAR REFERENCE MATCH — larger navigation, Settings above This Week */
+/* v29.9 FINAL SIDEBAR REFERENCE MATCH — larger navigation, Settings above This Week */
 @media(max-width:700px){
   html,body{height:100dvh!important;min-height:100dvh!important;overflow:hidden!important;overscroll-behavior:none!important}
   .app{height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;overflow:hidden!important;box-sizing:border-box!important;padding:0 8px 0 166px!important;margin:0!important;width:100%!important;max-width:100%!important}
@@ -311,12 +311,39 @@ body{background:#0b1423;color:#f3f6ff;font-family:Inter,system-ui,-apple-system,
   #view-coach>.card{flex:1 0 auto!important;min-height:calc(100dvh - 190px)!important}
 }
 
+
+
+/* v29.9: reference sidebar proportions and typography */
+@media(max-width:900px){
+  html,body{height:100dvh!important;min-height:100dvh!important;overflow:hidden!important}
+  .app{height:100dvh!important;max-height:100dvh!important;overflow:hidden!important;box-sizing:border-box!important;padding:0 8px 0 166px!important;width:100%!important;max-width:100%!important}
+  .sidebar{position:fixed!important;inset:0 auto 0 0!important;width:158px!important;height:100dvh!important;max-height:100dvh!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;overflow:hidden!important;padding:12px 9px!important;margin:0!important;z-index:100!important}
+  .side-brand{flex:0 0 auto!important;padding:7px 0 13px!important;margin:0 0 10px!important}
+  .side-logo{font-size:30px!important;line-height:1.1!important}
+  .side-name{font-size:15px!important;letter-spacing:0!important;white-space:nowrap!important}
+  .side-pro{font-size:9px!important;padding:4px 10px!important;margin-top:3px!important}
+  #nav.nav{display:flex!important;flex:1 1 auto!important;min-height:0!important;flex-direction:column!important;align-items:stretch!important;gap:3px!important;overflow-y:auto!important;overflow-x:hidden!important;padding:2px 0 5px!important;scrollbar-width:thin!important;overscroll-behavior:contain!important}
+  #nav.nav button{display:flex!important;align-items:center!important;gap:7px!important;width:100%!important;min-height:39px!important;flex:0 0 auto!important;padding:8px 7px!important;border-radius:9px!important;font-size:13px!important;line-height:1.2!important;font-weight:700!important;white-space:normal!important}
+  #nav.nav button span{font-size:19px!important;line-height:1!important;min-width:20px!important;text-align:center!important}
+  #nav.nav button.active{box-shadow:0 5px 15px #5d32d344!important}
+  #nav.nav button[data-view="settings"]{position:static!important;bottom:auto!important;margin-top:4px!important;flex:0 0 auto!important;background:#172740!important;border-top:1px solid #30445f!important}
+  .side-week{display:block!important;position:static!important;flex:0 0 auto!important;margin:8px 0 0!important;padding:12px 10px!important;border-radius:12px!important}
+  .side-week b{font-size:11px!important}
+  .side-week h3{font-size:13px!important;margin:12px 0 8px!important}
+  .side-week p{font-size:9px!important;margin:7px 0 0!important}
+  .side-progress{height:8px!important}
+  .main-content{height:100dvh!important;max-height:100dvh!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch!important;padding:0 0 24px!important;margin:0!important;max-width:none!important}
+  #view-coach{display:flex!important;flex-direction:column!important;width:100%!important;max-width:none!important;min-height:calc(100dvh - 20px)!important;box-sizing:border-box!important}
+  #view-coach>.card,#view-coach>.notice{width:100%!important;max-width:none!important;box-sizing:border-box!important}
+  #view-coach>.card{flex:1 0 auto!important;min-height:calc(100dvh - 190px)!important}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
- <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v29.8 PRO</div></div>
+ <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v30.0 PRO</div></div>
  <nav class="nav" id="nav">
  <button class="active" data-view="home"><span>⌂</span> Dashboard</button><button data-view="profile">Profile</button><button data-view="routine">Daily routine</button><button data-view="diet">🍴 Diet Plan</button><button data-view="nutrition">▥ Nutrition</button><button data-view="nutrition">☑ Meal Tracker</button><button data-view="recipes">♨ Recipes</button><button data-view="grocery">🛒 Grocery Manager</button><button data-view="workout">⚒ Workout</button><button data-view="progress">▰ Progress</button><button data-view="wellness">Water & Sleep</button><button data-view="reports">▤ Reports</button><button data-view="coach">🧭 Fitness Coach</button><button data-view="settings">⚙ Settings</button>
 </nav>
