@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1715">
+<meta name="theme-color" content="#0b1423">
 <meta name="description" content="Offline-first personal fitness planner">
 <link rel="manifest" href="manifest.webmanifest">
 <title>FITNESS HQ</title>
@@ -158,12 +158,99 @@ body{background:#0b1423;color:#f3f6ff;font-family:Inter,system-ui,-apple-system,
 .search-results button:active,.search-results button:hover{background:#263d59}
 @media(max-width:700px){.search-strip{margin:8px 0 14px;min-height:50px}.search-strip input{font-size:14px!important}.header-search{display:none!important}}
 
+/* FITNESS HQ v29.1 — mobile-first premium dashboard refinement */
+@media (max-width:700px){
+  :root{--bg:#0b1423;--panel:#111e31;--panel2:#172740;--line:#30445f;--text:#f2f6ff;--muted:#aabbd3}
+  html,body{background:#0b1423!important;min-height:100%;overscroll-behavior-x:none}
+  body{padding-bottom:calc(74px + env(safe-area-inset-bottom));font-size:14px}
+  .app{padding:0 10px calc(88px + env(safe-area-inset-bottom))!important;max-width:100%;overflow-x:hidden}
+  .sidebar{position:fixed!important;left:0!important;right:0!important;top:auto!important;bottom:0!important;width:100%!important;height:auto!important;z-index:100!important;margin:0!important;padding:7px 7px calc(7px + env(safe-area-inset-bottom))!important;background:rgba(12,22,40,.97)!important;border:0!important;border-top:1px solid #30445f!important;box-shadow:0 -8px 24px #0007;backdrop-filter:blur(16px)}
+  .side-brand,.side-week{display:none!important}
+  .nav{display:flex!important;flex-direction:row!important;gap:5px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none!important;white-space:nowrap!important;padding:0!important;margin:0!important;background:transparent!important;border:0!important;position:static!important}
+  .nav::-webkit-scrollbar{display:none}
+  .nav button{display:flex!important;flex:0 0 auto!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;width:68px!important;min-width:68px!important;min-height:52px!important;padding:5px 4px!important;border:1px solid transparent!important;border-radius:11px!important;background:transparent!important;color:#bdcbe0!important;font-size:9px!important;line-height:1.1!important;text-align:center!important}
+  .nav button span{font-size:17px!important;line-height:1}
+  .nav button.active{background:linear-gradient(135deg,#5830d1,#813fe7)!important;color:#fff!important;border-color:#8c68ef!important;box-shadow:0 4px 14px #6338d044!important}
+  .main-content{padding:0 0 14px!important;max-width:none!important}
+  .header{display:flex!important;align-items:center!important;gap:8px!important;padding:12px 1px 9px!important;margin:0!important}
+  .top-title h1{font-size:22px!important;letter-spacing:-.3px}
+  .top-title p{font-size:10px!important;line-height:1.25}
+  .top-actions{gap:5px!important}
+  .top-date{font-size:9px!important;padding:7px 8px!important;white-space:nowrap}
+  .top-icon{width:32px!important;height:32px!important;font-size:15px!important;flex:0 0 32px}
+  .search-strip{margin:4px 0 10px!important;min-height:42px!important;border-radius:12px!important}
+  .search-strip>span{font-size:20px!important}
+  .search-strip input{font-size:12px!important;padding:9px 0!important}
+  .hero{padding:9px 11px!important;margin:0 0 10px!important;border-radius:13px!important}
+  .hero h1{font-size:19px!important;margin:5px 0 0!important}
+  .hero p{display:none!important}
+  .hero .row{gap:6px}
+  .hero .pill{font-size:9px;padding:3px 7px}
+  .hero .stats{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;margin-top:8px}
+  .hero .stat{padding:6px 8px!important;border-radius:9px!important}
+  .hero .stat b{font-size:15px!important;line-height:1.15}
+  .hero .stat span{font-size:8px!important}
+  .dash-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;margin:0 0 9px!important}
+  .dash-metric{min-height:62px!important;padding:8px 10px!important;border-radius:11px!important}
+  .dash-metric span{font-size:10px!important;line-height:1.2}
+  .dash-metric b{font-size:17px!important;margin-top:4px!important;line-height:1.15}
+  .dash-main-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"diet" "work" "nutrition" "week" "grocery" "report"!important;gap:8px!important}
+  .dash-panel{padding:10px!important;border-radius:13px!important;box-shadow:0 5px 15px #0002!important}
+  .dash-panel h3{font-size:13px!important;margin-bottom:7px!important;gap:5px!important}
+  .dash-chip{font-size:9px!important;padding:3px 6px!important}
+  .dash-meal{grid-template-columns:48px minmax(0,1fr) auto!important;gap:7px!important;padding:6px 0!important}
+  .dash-meal .meal-icon{height:43px!important;width:48px!important;font-size:21px!important}
+  .dash-meal b{font-size:10px!important}
+  .dash-meal strong{font-size:11px!important;line-height:1.25!important}
+  .dash-meal small{font-size:9px!important}
+  .dash-status{font-size:8px!important;padding:4px 5px!important}
+  .dash-work-photo{max-height:150px!important}
+  .dash-work-empty{padding:14px 8px!important;font-size:12px}
+  .dash-nut-row{grid-template-columns:55px minmax(0,1fr) 36px!important;gap:6px!important;padding:6px 0!important;font-size:10px!important}
+  .dash-bar{height:7px!important}
+  .dash-link{font-size:10px!important;padding-top:6px!important}
+  .dash-table-wrap{max-width:100%;overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+  .dash-week-table{min-width:390px!important;font-size:9px!important}
+  .dash-week-table th,.dash-week-table td{padding:6px 4px!important;font-size:9px!important}
+  .dash-grocery-row{font-size:10px!important;padding:5px 0!important}
+  .dash-report-summary{gap:10px!important;padding:10px 2px!important}
+  .dash-ring{width:70px!important;height:70px!important}
+  .dash-ring b{font-size:14px!important}
+  .dash-report-tabs{font-size:9px!important}
+  .dash-report-tabs span{padding:5px 7px!important}
+  .section-title{margin:7px 0 10px!important;gap:7px!important}
+  .section-title h2{font-size:18px!important}
+  .card{padding:12px!important;margin-bottom:9px!important;border-radius:13px!important}
+  .card h3{font-size:15px!important}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .grid3{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+  .kpi{padding:8px!important;border-radius:10px!important}
+  .kpi b{font-size:17px!important}
+  .kpi span{font-size:9px!important}
+  input,select,textarea{font-size:14px!important;min-height:40px}
+  textarea{min-height:66px}
+  .daytabs{gap:5px!important;margin:8px 0!important}
+  .daytabs button{padding:7px 9px!important;font-size:10px!important}
+  .tablewrap{max-width:100%;overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+  footer{padding:12px 0!important}
+}
+@media(max-width:380px){
+  .top-title h1{font-size:20px!important}
+  .top-title p{display:none!important}
+  .top-date{font-size:8px!important;padding:6px!important}
+  .top-icon{width:29px!important;height:29px!important;flex-basis:29px}
+  .dash-meal{grid-template-columns:42px minmax(0,1fr) auto!important;gap:5px!important}
+  .dash-meal .meal-icon{width:42px!important;height:40px!important}
+  .dash-status{font-size:7px!important}
+  .nav button{width:62px!important;min-width:62px!important}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
- <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v27.0 PRO</div></div>
+ <div class="side-brand"><div class="side-logo">💪</div><div class="side-name">FITNESS HQ</div><div class="side-pro">v29.2 PRO</div></div>
  <nav class="nav" id="nav">
  <button class="active" data-view="home"><span>⌂</span> Dashboard</button><button data-view="profile">Profile</button><button data-view="routine">Daily routine</button><button data-view="diet">🍴 Diet Plan</button><button data-view="nutrition">▥ Nutrition</button><button data-view="nutrition">☑ Meal Tracker</button><button data-view="recipes">♨ Recipes</button><button data-view="grocery">🛒 Grocery Manager</button><button data-view="workout">⚒ Workout</button><button data-view="progress">▰ Progress</button><button data-view="wellness">Water & Sleep</button><button data-view="reports">▤ Reports</button><button data-view="coach">🧭 Fitness Coach</button><button data-view="settings">⚙ Settings</button>
 </nav>
