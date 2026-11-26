@@ -267,6 +267,20 @@ body{background:#0b1423;color:#f3f6ff;font-family:Inter,system-ui,-apple-system,
   .main-content{height:100dvh!important;max-height:100dvh!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch!important;padding:0 0 24px!important;margin:0!important;max-width:none!important}
 }
 
+
+/* v29.4 — full-height coach view, bottom-pinned Settings, centre-only scroll */
+@media(max-width:700px){
+  /* Keep the centre as the only vertical scrolling region */
+  html,body{height:100%;overflow:hidden!important}
+  .main-content{height:100dvh!important;max-height:100dvh!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch!important}
+  /* Let the coach section use the full available centre width and viewport height */
+  #view-coach{display:flex!important;flex-direction:column!important;width:100%!important;max-width:none!important;min-height:calc(100dvh - 125px)!important}
+  #view-coach>.card,#view-coach>.notice{width:100%!important;max-width:none!important;box-sizing:border-box!important}
+  #view-coach>.card{flex:1 0 auto!important}
+  /* Keep Settings at the bottom of the left navigation list */
+  #nav button[data-view="settings"]{position:sticky!important;bottom:0!important;z-index:3!important;margin-top:auto!important;background:#172740!important;border-top:1px solid #30445f!important}
+}
+
 </style>
 </head>
 <body>
